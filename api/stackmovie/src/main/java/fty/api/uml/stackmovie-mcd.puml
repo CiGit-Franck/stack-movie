@@ -1,0 +1,14 @@
+@startuml
+title MCD
+
+class Movie
+enum Genre
+class Actor
+class Director
+class User
+
+Movie       "0..n" -- "1..n"    Genre : a
+Movie       "0..n" -- "1..n"    Actor : a
+Movie       "0..n" -- "1..n"    Director : a
+User        "1"    -- "0..n"    Movie : a vu
+@enduml

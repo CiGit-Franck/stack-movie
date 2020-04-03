@@ -1,0 +1,52 @@
+@startuml
+Movie       "1" -- "1..n"    Genre : a
+Movie       "1" -- "1..n"    Actor : a
+Movie       "1" -- "1..n"    Director : a
+User        "1" -- "0..n"    Movie : a vu
+
+class Movie {
+  idMovie: Integer
+  title: String
+  director: String
+  date: Date
+  genres: Genre[]
+  actors: Actor[]
+  story: String
+  imdbRating: Float
+  imdbVote: integer
+  getMovieFromOmdbById(imdbId: String)
+}
+
+enum Genre {
+  [
+    "Action",
+    "Adventure",
+    "Crime",
+    "Drama",
+    "Fantasy",
+    "Mystery",
+    "Sci-Fi",
+    "Thriller",
+    ...
+  ]
+}
+
+class Actor {
+  idActor: Integer
+  firstName: String
+  lastName: String
+}
+
+class Director {
+  idDirector: Integer
+  firstName: String
+  lastName: String
+}
+
+class User {
+  idUser: Integer
+  firstName: String
+  lastName: String
+  moviesSeen: Movie[]
+}
+@enduml
