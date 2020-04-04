@@ -47,6 +47,9 @@ class User {
   idUser: Integer
   firstName: String
   lastName: String
+  mail: String
+  login: String 
+  password: String 
   moviesSeen: Movie[]
 }
 @enduml

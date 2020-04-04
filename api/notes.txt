@@ -1,0 +1,6 @@
+> Recherche de film
+https://api.themoviedb.org/3/search/movie?query={keyword}&language={lang}&api_key={key}
+
+ex recherche de film 'thor' :
+https://api.themoviedb.org/3/search/movie?query=thor&language=fr-FR&api_key=d2628396a5193eec56118853198e2102
+
