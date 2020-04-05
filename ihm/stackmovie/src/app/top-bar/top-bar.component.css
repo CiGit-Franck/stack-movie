@@ -1,0 +1,13 @@
+div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    background-color: rgb(159, 163, 255);
+  }
+
+  mat-icon {
+    cursor: pointer;
+    /* text-decoration: none; */
+  }

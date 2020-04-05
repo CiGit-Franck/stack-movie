@@ -1,0 +1,8 @@
+div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    background-color: rgb(159, 163, 255);
+  }
