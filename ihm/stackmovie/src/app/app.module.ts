@@ -2,33 +2,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatBadgeModule,
-  MatSidenavModule,
-  MatListModule,
-  MatGridListModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatSelectModule,
-  // MatRadioModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatChipsModule,
-  MatTooltipModule,
-  MatTableModule,
-  MatPaginatorModule
-} from '@angular/material';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { FootBarComponent } from './foot-bar/foot-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -36,34 +29,30 @@ import { LoginPageComponent } from './login-page/login-page.component';
     TopBarComponent,
     FootBarComponent,
     HomePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
-      { path: 'login', component: LoginPageComponent }
+      { path: 'login', component: LoginPageComponent },
+      { path: 'adduser', component: AddUserComponent },
     ]),
     HttpClientModule,
+    FlexLayoutModule,
     MatButtonModule,
     MatToolbarModule,
+    MatCardModule,
     MatIconModule,
-    MatBadgeModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
-    // MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatChipsModule,
-    MatTooltipModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
