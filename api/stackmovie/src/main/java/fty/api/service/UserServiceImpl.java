@@ -9,6 +9,7 @@ import fty.api.model.User;
 import fty.api.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -44,5 +45,10 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User updateUser) {
         return userRepository.save(updateUser);
     }
+
+//    @Override
+//    public User getUserWithLogin(String mail, String password) {
+//        return userRepository.getUserWithLogin(mail, password);
+//    }
     
 }

@@ -43,4 +43,9 @@ public class UserControler {
     public User updateUser(User updateUser) {
         return userService.updateUser(updateUser);
     }
+//    
+//    @PostMapping()
+//    public User getUserWithLogin(String login, String password) {
+//        return userService.getUserWithLogin(login, password);
+//    }
 }

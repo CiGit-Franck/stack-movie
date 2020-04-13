@@ -5,20 +5,22 @@
         <mat-card-title>Log in</mat-card-title>
       </mat-card-header>
   
-      <form class="example-form">
+      <form class="example-form" [formGroup]="formLogin" (ngSubmit)="onSubmit(formLogin.value)">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email">
+            <input matInput type="email" formControlName="controlMail" placeholder="Email">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
+            <input matInput type="password" formControlName="controlPassword" placeholder="Password">
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+
+        <button mat-stroked-button type="submit" color="accent" class="btn-block">Log in</button>
+
       </form>
 
-      <button mat-button [routerLink]="['adduser']">S'inscrire</button>
+      <button mat-button [routerLink]="['/adduser']">S'inscrire</button>
     
     </mat-card>
   

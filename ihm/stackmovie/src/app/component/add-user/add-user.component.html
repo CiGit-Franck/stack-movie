@@ -5,27 +5,29 @@
             <mat-card-title>Nouvel utilisateur</mat-card-title>
         </mat-card-header>
 
-        <form class="example-form">
+        <form class="example-form" [formGroup]="formUser" (ngSubmit)="onSubmit(formUser.value)">
             <mat-card-content>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Prenom">
+                    <input matInput type="string" formControlName="controlFirstName" placeholder="Prenom">
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Nom">
+                    <input matInput type="string" formControlName="controlLastName" placeholder="Nom">
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email">
+                    <input matInput type="email" formControlName="controlMail" placeholder="Email">
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Password">
+                    <input matInput type="password" formControlName="controlPassword" placeholder="Password">
                 </mat-form-field>
             </mat-card-content>
 
-            <button mat-stroked-button color="accent" class="btn-block">Enregistrer</button>
+            <button mat-stroked-button type="submit" color="accent" class="btn-block">Enregistrer</button>
         </form>
+
+        <button mat-button [routerLink]="['']">Annuler</button>
 
     </mat-card>
 

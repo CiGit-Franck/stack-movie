@@ -36,10 +36,6 @@ public class User {
     
     @Column()
     @NotNull
-    private String login;
-    
-    @Column()
-    @NotNull
     private String password;
 
     @ManyToMany

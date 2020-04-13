@@ -17,11 +17,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { FootBarComponent } from './foot-bar/foot-bar.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { AddUserComponent } from './add-user/add-user.component';
+import { TopBarComponent } from './component/top-bar/top-bar.component';
+import { FootBarComponent } from './component/foot-bar/foot-bar.component';
+import { HomePageComponent } from './component/home-page/home-page.component';
+import { LoginPageComponent } from './component/login-page/login-page.component';
+import { AddUserComponent } from './component/add-user/add-user.component';
+
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { AddUserComponent } from './add-user/add-user.component';
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
