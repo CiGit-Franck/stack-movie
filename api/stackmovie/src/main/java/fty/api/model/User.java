@@ -18,8 +18,8 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    @SequenceGenerator(name = "user_seq_id", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "user_seq_id", sequenceName = "user_seq_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_seq_id")
     private Long idUser;
 
     @Column()

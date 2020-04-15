@@ -17,7 +17,7 @@ export class UserService {
     })
   };
 
-  private pathRootApi = 'http://localhost:8080/api/';
+  private pathRootApi = 'http://localhost:8080/';
 
   public currentUser: Observable<User>;
 

@@ -8,6 +8,7 @@ package fty.api.controler;
 import fty.api.model.User;
 import fty.api.service.UserService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
  * @author utilisateur
  */
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("users")
+@CrossOrigin("*")
 public class UserControler {
     
     private UserService userService;
@@ -35,7 +37,7 @@ public class UserControler {
     }
     
     @PostMapping()
-    public User createUser(User newUser) {
+    public User createUser(@RequestBody @Valid User newUser) {
         return userService.createUser(newUser);
     }
     

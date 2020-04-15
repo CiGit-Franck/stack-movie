@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User newUser) {
+        System.out.println("[controler]"+newUser);
         return userRepository.save(newUser);
     }
 

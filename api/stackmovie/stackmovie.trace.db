@@ -278,3 +278,8 @@ select * from stackmovie.user [90079-197]
 org.h2.jdbc.JdbcSQLException: Erreur de syntaxe dans linstruction SQL {0}; attendu {1}
 Syntax error in SQL statement {0}; expected {1}; SQL statement:
 drop user [42001-197]
+2020-04-14 17:30:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Erreur de syntaxe dans linstruction SQL {0}
+Syntax error in SQL statement {0}; SQL statement:
+drop table TEST
+/ [42000-197]
