@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User newUser) {
-        System.out.println("[controler]"+newUser);
         return userRepository.save(newUser);
     }
 
@@ -47,9 +46,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(updateUser);
     }
 
-//    @Override
-//    public User getUserWithLogin(String mail, String password) {
-//        return userRepository.getUserWithLogin(mail, password);
-//    }
+    @Override
+    public User getUserWithLogin(String mail, String password) {
+        return userRepository.getUserWithLogin(mail, password);
+    }
     
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -36,13 +37,13 @@ import { UserService } from './service/user.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'login', component: LoginPageComponent },
       { path: 'adduser', component: AddUserComponent },
     ]),
-    HttpClientModule,
     FlexLayoutModule,
     MatButtonModule,
     MatToolbarModule,
@@ -59,4 +60,5 @@ import { UserService } from './service/user.service';
   providers: [UserService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -46,4 +46,42 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "idMmovie")
     )
     private List<Movie> moviesSeen;
+
+//    public User(Long idUser, String firstName, String lastName, String mail, String password) {
+//        this.idUser = idUser;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.mail = mail;
+//        this.password = password;
+//        this.moviesSeen = new ArrayList<>();
+//    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public List<Movie> getMoviesSeen() {
+        return moviesSeen;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "idUser=" + idUser + ", firstName=" + firstName + ", lastName=" + lastName + ", mail=" + mail + ", password=" + password + '}';
+    }
 }

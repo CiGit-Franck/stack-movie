@@ -19,5 +19,5 @@ public interface UserService {
     User updateUser(User updateUser);
     List<User> getUsers();
     User getUser(Long id);
-//    User getUserWithLogin(String mail, String password);
+    User getUserWithLogin(String mail, String password);
 }

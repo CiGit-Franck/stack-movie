@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../service/user.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-login-page',
@@ -10,24 +12,29 @@ import { UserService } from '../../service/user.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  formLogin;
+  formLogin: FormGroup;
+  currentUser: User;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.formLogin = formBuilder.group({
-      controlMail: '',
-      controlPassword: '',
+      mail: new FormControl(''),
+      password: new FormControl('')
     });
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(formLogin) {
-    if (formLogin.controlMail === '' || formLogin.controlPassword === '') {
+  onSubmit() {
+    let user:User = new User(this.formLogin.value);
+    if (user.mail === '' || user.password === '') {
       alert('Champ non renseigné');
     }
     else {
-      this.userService.getUserWithLogin(formLogin.controlMail, formLogin.controlPassword);
+      this.userService.getUserWithLogin(user.mail.toString(), user.password.toString()).subscribe(currentUser => {
+        this.currentUser = currentUser;
+      });
+      this.router.navigate(['']);
     }
   }
 }

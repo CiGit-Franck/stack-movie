@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { User } from '../model/user';
@@ -12,9 +11,9 @@ export class UserService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type':  'application/json',
       'Authorization': 'my-auth-token'
-    })
+      })
   };
 
   private pathRootApi = 'http://localhost:8080/';
@@ -24,23 +23,21 @@ export class UserService {
   constructor(private httpClient: HttpClient) { 
   }
 
-  public getUserWithLogin(mail: string, pwd: string) {
-    const urlApi = this.pathRootApi + 'users/'
+  public getUserWithLogin(login: string, pwd: string): Observable<User> {
+    const urlApi = this.pathRootApi + 'users/login';
     const credential = {
-      login: mail,
+      mail: login,
       password: pwd
     };
-    this.currentUser = this.httpClient.post<User>(urlApi, credential, this.httpOptions);
-    return this.getCurrentUser();
+    return this.httpClient.post<User>(urlApi, credential, this.httpOptions);
   }
 
-
-  public getCurrentUser(){
+  public getCurrentUser(): Observable<User> {
     return this.currentUser;
   }
 
-  public addUser(newUser: User) {
-    const urlApi = this.pathRootApi + 'users/'
+  public addUser(newUser: User): Observable<User> {
+    const urlApi = this.pathRootApi + 'users';
     return this.httpClient.post<User>(urlApi, newUser, this.httpOptions);
-  }
+  } 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from '../../model/user';
 import { UserService } from '../../service/user.service';
@@ -12,30 +13,29 @@ import { UserService } from '../../service/user.service';
 export class AddUserComponent implements OnInit {
 
   formUser: FormGroup;
-  newUser: User = new User();
+  currentUser: User;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.formUser = formBuilder.group({
-      controlFirstName: '',
-      controlLastName: '',
-      controlMail: '',
-      controlPassword: '',
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      mail: new FormControl(''),
+      password: new FormControl('')
     });
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(formResponse: FormGroup) {
-    if (formResponse.value.controlMail === '' || formResponse.value.controlPassword === '') {
+  onSubmit() {
+    let addUser = new User(this.formUser.value);
+    if (addUser.mail === '' || addUser.password === '') {
       alert('Les champs email et password ne peuvent pas être vide');
     } else {
-      this.newUser = <User> formResponse.value;
-      this.addUser(this.newUser);
+      this.userService.addUser(addUser).subscribe(currentUser => {
+        this.currentUser = currentUser;
+      });
+      this.router.navigate(['']);
     }
-  }
-
-  addUser(newUser: User) {
-    this.userService.addUser(newUser);
   }
 }

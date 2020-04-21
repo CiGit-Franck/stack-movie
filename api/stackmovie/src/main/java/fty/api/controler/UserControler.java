@@ -45,9 +45,12 @@ public class UserControler {
     public User updateUser(User updateUser) {
         return userService.updateUser(updateUser);
     }
-//    
-//    @PostMapping()
-//    public User getUserWithLogin(String login, String password) {
-//        return userService.getUserWithLogin(login, password);
-//    }
+    
+    @PostMapping("/login")
+    public User getUserWithLogin(String mail, String password) {
+        System.out.println("[controler.getUserWithLogin] with " + mail + ", "+password);
+        User user = userService.getUserWithLogin(mail, password);
+        System.out.println("[controler.getUserWithLogin] resut " + user);
+        return user;
+    }
 }
