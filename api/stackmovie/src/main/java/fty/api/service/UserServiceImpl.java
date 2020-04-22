@@ -9,7 +9,6 @@ import fty.api.model.User;
 import fty.api.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    
+
     private UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -50,5 +49,5 @@ public class UserServiceImpl implements UserService {
     public User getUserWithLogin(String mail, String password) {
         return userRepository.getUserWithLogin(mail, password);
     }
-    
+
 }

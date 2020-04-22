@@ -16,7 +16,7 @@ export class UserService {
       })
   };
 
-  private pathRootApi = 'http://localhost:8080/';
+  private pathRootApi = 'http://localhost:8080/users';
 
   public currentUser: Observable<User>;
 
@@ -24,12 +24,13 @@ export class UserService {
   }
 
   public getUserWithLogin(login: string, pwd: string): Observable<User> {
-    const urlApi = this.pathRootApi + 'users/login';
+    const urlApi = this.pathRootApi + '/login';
     const credential = {
       mail: login,
       password: pwd
     };
-    return this.httpClient.post<User>(urlApi, credential, this.httpOptions);
+    this.currentUser = this.httpClient.post<User>(urlApi, credential, this.httpOptions);
+    return this.currentUser;
   }
 
   public getCurrentUser(): Observable<User> {
@@ -37,7 +38,7 @@ export class UserService {
   }
 
   public addUser(newUser: User): Observable<User> {
-    const urlApi = this.pathRootApi + 'users';
+    const urlApi = this.pathRootApi;
     return this.httpClient.post<User>(urlApi, newUser, this.httpOptions);
   } 
 }

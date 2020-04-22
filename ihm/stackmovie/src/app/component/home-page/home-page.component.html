@@ -1,1 +1,46 @@
-<p>home-page works!</p>
+<section>
+    <!-- <div> -->
+        <mat-icon title="Ajouter un film" [routerLink]="['/addamovie']">playlist_add</mat-icon>
+    <!-- </div> -->
+</section>
+<section>
+    <mat-table [dataSource]="movies" matSort aria-describedby="Liste des films">
+
+        <!-- Title -->
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Titre</mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <mat-icon [routerLink]="['/movie', item.idImdb]">zoom_in</mat-icon>{{item.title}}
+            </mat-cell>
+        </ng-container>
+
+        <!-- Directors -->
+        <ng-container matColumnDef="directors">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Réalisateurs</mat-header-cell>
+            <mat-cell *matCellDef="let item">{{item.directors}}</mat-cell>
+        </ng-container>
+
+        <!-- Actors -->
+        <ng-container matColumnDef="actors">
+            <mat-header-cell *matHeaderCellDef>Acteurs</mat-header-cell>
+            <mat-cell *matCellDef="let item">{{item.actors}}</mat-cell>
+        </ng-container>
+
+        <!-- Genres -->
+        <ng-container matColumnDef="genres">
+            <mat-header-cell *matHeaderCellDef>Genres</mat-header-cell>
+            <mat-cell *matCellDef="let item">{{item.genres}}</mat-cell>
+        </ng-container>
+
+        <!-- Story -->
+        <ng-container matColumnDef="story">
+            <mat-header-cell *matHeaderCellDef>Résumé</mat-header-cell>
+            <mat-cell *matCellDef="let item">{{item.story}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="moviesColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: moviesColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator [length]="movies.data.length" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</section>

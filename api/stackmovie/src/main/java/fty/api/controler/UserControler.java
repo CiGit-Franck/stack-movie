@@ -47,10 +47,10 @@ public class UserControler {
     }
     
     @PostMapping("/login")
-    public User getUserWithLogin(String mail, String password) {
-        System.out.println("[controler.getUserWithLogin] with " + mail + ", "+password);
-        User user = userService.getUserWithLogin(mail, password);
-        System.out.println("[controler.getUserWithLogin] resut " + user);
+    public User getUserWithLogin(@RequestBody User usr) {
+        System.out.println("[controler.getUserWithLogin] with " + usr.getMail() + ", "+usr.getPassword());
+        User user = userService.getUserWithLogin(usr.getMail(), usr.getPassword());
+        System.out.println("[controler.getUserWithLogin] result " + user);
         return user;
     }
 }

@@ -33,6 +33,9 @@ export class LoginPageComponent implements OnInit {
     else {
       this.userService.getUserWithLogin(user.mail.toString(), user.password.toString()).subscribe(currentUser => {
         this.currentUser = currentUser;
+        if(this.currentUser === null ){
+          alert('Utilisateur inconnu');
+        }
       });
       this.router.navigate(['']);
     }
