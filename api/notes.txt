@@ -2,6 +2,12 @@ https://www.themoviedb.org/
 fty59
 fty59
 https://www.themoviedb.org/u/fty59
+
+Clé de l'API (v3 auth)
+d2628396a5193eec56118853198e2102
+
+Jeton d'accès en lecture à l'API (v4 auth)
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjYyODM5NmE1MTkzZWVjNTYxMTg4NTMxOThlMjEwMiIsInN1YiI6IjVlNWJkNmE4MzU3YzAwMDAxMTI5YTRmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5PDAe6D1sbUMCTcdegZaBRgqDkeDZ3mbUB56qylDrkc
 --
 > Recherche de film
 https://api.themoviedb.org/3/search/movie?query={keyword}&language={lang}&api_key={key}
