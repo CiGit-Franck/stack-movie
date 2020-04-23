@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("movies")
-@CrossOrigin("*")
 public class MovieControler {
 
     private MovieService movieService;
@@ -45,7 +44,6 @@ public class MovieControler {
         return movieService.getMovies();
     }
 
-    @GetMapping("/search/{keyword}")
     public List<Movie> searchMoviesFromTMDBByKeyword(String keyword) {
         return movieService.searchMoviesFromTMDBByKeyword(keyword);
     }

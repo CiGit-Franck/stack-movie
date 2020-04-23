@@ -8,7 +8,9 @@ package fty.api.service;
 import fty.api.model.Movie;
 import fty.api.repository.MovieRepository;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ public class MovieServiceImpl implements MovieService {
     
     private MovieRepository movieRepository;
 
+    private Map<String, String> args = new HashMap<>();
+    
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
