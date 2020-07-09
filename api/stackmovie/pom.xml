@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.4.RELEASE</version>
+        <version>2.2.6.RELEASE</version>
         <relativePath/>
     </parent>
     <!-- Définition projet -->
@@ -31,19 +31,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!--<version>2.3.1.RELEASE</version>-->
         </dependency>
         <!-- Spring Data JPA with Hibernate -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <!--<version>2.3.1.RELEASE</version>-->
         </dependency>
         <!-- Starter for using Spring Security's OAuth2/OpenID Connect client features -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>-->
         <!-- Spring Security -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>-->
@@ -51,6 +53,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <!--<version>2.3.1.RELEASE</version>-->
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
@@ -61,21 +64,21 @@
             <scope>test</scope>
         </dependency>
         <!-- Base H2 -->
-        <dependency>
+        <!-- dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.197</version>
             <scope>runtime</scope>
+        </dependency -->
+        <!-- Base POSTGRES -->                 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.8</version>
         </dependency>
-        <!-- Base POSTGRES                    
-                <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <version>42.2.8</version>
-                </dependency>
-        -->
+      
         <!-- SWAGGER -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>

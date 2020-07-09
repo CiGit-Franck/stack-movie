@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * @author utilisateur
  */
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class User {
 
     @Id
@@ -38,29 +38,17 @@ public class User {
     @NotNull
     private String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_movie",
-            joinColumns
-            = @JoinColumn(name = "idUser"),
-            inverseJoinColumns = @JoinColumn(name = "idMmovie")
-    )
-    private List<Movie> moviesSeen;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Movie> moviesSeen =new HashSet<Movie>();
 
-//    public User(Long idUser, String firstName, String lastName, String mail, String password) {
-//        this.idUser = idUser;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.mail = mail;
-//        this.password = password;
-//        this.moviesSeen = new ArrayList<>();
-//    }
+    public User() {
+    }
 
     public Long getIdUser() {
         return idUser;
     }
 
-    public List<Movie> getMoviesSeen() {
+    public Set<Movie> getMoviesSeen() {
         return moviesSeen;
     }
 

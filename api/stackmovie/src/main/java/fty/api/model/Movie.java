@@ -38,30 +38,33 @@ public class Movie {
     @Column()
     private Integer imdbVote;
 
-    @ManyToMany
-    @JoinTable(
-            name = "movie_director",
-            joinColumns =
-            @JoinColumn (name = "idMmovie"),
-            inverseJoinColumns = @JoinColumn ( name = "idDirector")
-    )
-    private List<Director> directors;
+    @ManyToOne
+    private User user;
+    
+//    @ManyToMany
+//    @JoinTable(
+//            name = "movie_director",
+//            joinColumns =
+//            @JoinColumn (name = "idMmovie"),
+//            inverseJoinColumns = @JoinColumn ( name = "idDirector")
+//    )
+//    private List<Director> directors;
 
-    @ManyToMany
-    @JoinTable(
-            name = "movie_genre",
-            joinColumns =
-            @JoinColumn (name = "idMmovie"),
-            inverseJoinColumns = @JoinColumn ( name = "idGenre")
-    )
-    private List<Genre> genres;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "movie_genre",
+//            joinColumns =
+//            @JoinColumn (name = "idMmovie"),
+//            inverseJoinColumns = @JoinColumn ( name = "idGenre")
+//    )
+//    private List<Genre> genres;
 
-    @ManyToMany
-    @JoinTable(
-            name = "movie_actor",
-            joinColumns =
-            @JoinColumn (name = "idMmovie"),
-            inverseJoinColumns = @JoinColumn ( name = "idActor")
-    )
-    private List<Actor> actors;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "movie_actor",
+//            joinColumns =
+//            @JoinColumn (name = "idMmovie"),
+//            inverseJoinColumns = @JoinColumn ( name = "idActor")
+//    )
+//    private List<Actor> actors;
 }
