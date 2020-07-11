@@ -28,4 +28,31 @@ public class Director {
     @Column()
     @NotNull
     private String lastName;
+    
+    @ManyToOne
+    private Movie movie;
+
+    public Director() {
+    }
+
+    @Override
+    public String toString() {
+        return "Director{" + "idDirector=" + idDirector + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+    }
+
+    public Long getIdDirector() {
+        return idDirector;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
 }

@@ -41,30 +41,61 @@ public class Movie {
     @ManyToOne
     private User user;
     
-//    @ManyToMany
-//    @JoinTable(
-//            name = "movie_director",
-//            joinColumns =
-//            @JoinColumn (name = "idMmovie"),
-//            inverseJoinColumns = @JoinColumn ( name = "idDirector")
-//    )
-//    private List<Director> directors;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<Director> directors = new HashSet<Director>();
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "movie_genre",
-//            joinColumns =
-//            @JoinColumn (name = "idMmovie"),
-//            inverseJoinColumns = @JoinColumn ( name = "idGenre")
-//    )
-//    private List<Genre> genres;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<Genre> genres = new HashSet<Genre>();
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "movie_actor",
-//            joinColumns =
-//            @JoinColumn (name = "idMmovie"),
-//            inverseJoinColumns = @JoinColumn ( name = "idActor")
-//    )
-//    private List<Actor> actors;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<Actor> actors = new HashSet<Actor>();
+
+    public Movie() {
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" + "idMovie=" + idMovie + ", title=" + title + ", date=" + date + ", story=" + story + ", imdbRating=" + imdbRating + ", imdbVote=" + imdbVote + '}';
+    }
+
+    public Long getIdMovie() {
+        return idMovie;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public Float getImdbRating() {
+        return imdbRating;
+    }
+
+    public Integer getImdbVote() {
+        return imdbVote;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Set<Director> getDirectors() {
+        return directors;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public Set<Actor> getActors() {
+        return actors;
+    }
+
 }

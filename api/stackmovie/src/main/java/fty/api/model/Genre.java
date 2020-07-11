@@ -24,4 +24,27 @@ public class Genre {
     @Column()
     @NotNull
     private String name;
+    
+    @ManyToOne
+    private Movie movie;
+
+    public Genre() {
+    }
+
+    @Override
+    public String toString() {
+        return "Genre{" + "idGenre=" + idGenre + ", name=" + name + '}';
+    }
+
+    public Long getIdGenre() {
+        return idGenre;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
 }

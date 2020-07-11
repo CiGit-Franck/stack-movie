@@ -39,7 +39,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Movie> moviesSeen =new HashSet<Movie>();
+    private Set<Movie> moviesSeen = new HashSet<Movie>();
 
     public User() {
     }
