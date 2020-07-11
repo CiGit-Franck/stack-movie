@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from '../../model/user';
@@ -17,10 +17,11 @@ export class AddUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.formUser = formBuilder.group({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      mail: new FormControl(''),
-      password: new FormControl('')
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      mail: ['', Validators.required],
+      password: ['', Validators.required],
+      repassword: ['', Validators.required]
     });
   }
 
@@ -29,8 +30,10 @@ export class AddUserComponent implements OnInit {
 
   onSubmit() {
     let addUser = new User(this.formUser.value);
-    if (addUser.mail === '' || addUser.password === '') {
+    if (this.formUser.invalid) {
       alert('Les champs email et password ne peuvent pas être vide');
+    } else if (addUser.password !== this.formUser.get('repassword').value) {
+      alert('Les mots de passe sont différents');
     } else {
       this.userService.addUser(addUser).subscribe(currentUser => {
         this.currentUser = currentUser;

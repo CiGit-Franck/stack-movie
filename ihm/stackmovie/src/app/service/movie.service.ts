@@ -9,7 +9,7 @@ import { Movie } from '../model/movie';
 })
 export class MovieService {
 
-  private pathRootApi = 'http://localhost:8080/movies';
+  private pathRootApi = 'http://localhost:8090/movies';
 
   public currentMovie: Observable<Movie>;
 

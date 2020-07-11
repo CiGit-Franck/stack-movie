@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../service/user.service';
@@ -17,8 +17,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.formLogin = formBuilder.group({
-      mail: new FormControl(''),
-      password: new FormControl('')
+      mail: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -26,17 +26,19 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit() {
-    let user:User = new User(this.formLogin.value);
-    if (user.mail === '' || user.password === '') {
-      alert('Champ non renseigné');
+    if (this.formLogin.invalid) {
+      alert('Champ(s) non renseigné(s)');
     }
     else {
+      let user:User = new User(this.formLogin.value);
       this.userService.getUserWithLogin(user.mail.toString(), user.password.toString()).subscribe(currentUser => {
         this.currentUser = currentUser;
         if(this.currentUser === null ){
           alert('Utilisateur inconnu');
         }
+        console.log(currentUser);
       });
+      // @todo : affiche la liste ou retour login
       this.router.navigate(['']);
     }
   }
