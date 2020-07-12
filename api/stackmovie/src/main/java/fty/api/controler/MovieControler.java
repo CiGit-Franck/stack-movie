@@ -8,6 +8,7 @@ package fty.api.controler;
 import fty.api.model.Movie;
 import fty.api.service.MovieService;
 import java.util.List;
+import java.util.Set;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("movies")
+@CrossOrigin("*")
 public class MovieControler {
 
     private MovieService movieService;
@@ -44,7 +46,8 @@ public class MovieControler {
         return movieService.getMovies();
     }
 
-    public List<Movie> searchMoviesFromTMDBByKeyword(String keyword) {
+    @GetMapping("/search/{keyword}")
+    public List<Movie> searchMoviesFromTMDBByKeyword(@PathVariable String keyword) {
         return movieService.searchMoviesFromTMDBByKeyword(keyword);
     }
 }

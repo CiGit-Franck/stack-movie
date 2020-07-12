@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
+import { MovieService } from '../../service/movie.service';
 import { Movie } from '../../model/movie';
 
 @Component({
@@ -15,10 +17,13 @@ import { Movie } from '../../model/movie';
 export class AddMovieComponent implements OnInit {
 
   addAMovieForm: FormGroup;
+  displayedColumns: any[] = ['add', 'title', 'released', 'idImdb', 'posterUrl'];
+  dataSource = new MatTableDataSource<Movie>();
+  hasData = false;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private movieService: MovieService) {
     this.addAMovieForm = this.formBuilder.group({
-      title: new FormControl(''),
+      title: ['', Validators.required]
       // released: new FormControl(''),
     });
   }
@@ -30,11 +35,19 @@ export class AddMovieComponent implements OnInit {
   }
 
   onSubmit() {
-    let addAMovie = this.addAMovieForm.value;
-    if(addAMovie.title === ''){
+    if (this.addAMovieForm.invalid) {
       alert('Veuillez saisir unélément de recherche');
     } else {
-      
+      let addAMovie = this.addAMovieForm.value;
+      this.movieService.getMoviesByKeyword(addAMovie.title).subscribe(movieSearch=>{
+        this.dataSource.data = movieSearch;
+        this.hasData = (movieSearch.length > 0);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      })
     }
+  }
+  
+  addAmovie(movie: Movie) {
   }
 }

@@ -11,7 +11,7 @@ export class MovieService {
 
   private pathRootApi = 'http://localhost:8090/movies';
 
-  public currentMovie: Observable<Movie>;
+  public listMovie: Observable<Movie[]>;
 
   constructor(private httpClient: HttpClient) { }
 
