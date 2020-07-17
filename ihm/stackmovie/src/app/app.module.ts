@@ -23,9 +23,10 @@ import { FootBarComponent } from './component/foot-bar/foot-bar.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
 import { LoginPageComponent } from './component/login-page/login-page.component';
 import { AddUserComponent } from './component/add-user/add-user.component';
+import { AddMovieComponent } from './component/add-movie/add-movie.component';
 
 import { UserService } from './service/user.service';
-import { AddMovieComponent } from './component/add-movie/add-movie.component';
+import { MovieService } from './service/movie.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { AddMovieComponent } from './component/add-movie/add-movie.component';
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, MovieService],
   bootstrap: [AppComponent]
 })
 

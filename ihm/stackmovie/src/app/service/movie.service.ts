@@ -16,7 +16,7 @@ export class MovieService {
   constructor(private httpClient: HttpClient) { }
 
   getMoviesByKeyword(keyword: string): Observable<Movie[]> {
-    const urlApi = this.pathRootApi + 'movies/search/' + keyword;
+    const urlApi = this.pathRootApi + '/search/' + keyword;
     return this.httpClient.get<Movie[]>(urlApi);
   }
 }

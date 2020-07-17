@@ -48,6 +48,7 @@ public class MovieControler {
 
     @GetMapping("/search/{keyword}")
     public List<Movie> searchMoviesFromTMDBByKeyword(@PathVariable String keyword) {
+//System.out.println("[controler:searchMoviesFromTMDBByKeyword] with "+keyword);
         return movieService.searchMoviesFromTMDBByKeyword(keyword);
     }
 }

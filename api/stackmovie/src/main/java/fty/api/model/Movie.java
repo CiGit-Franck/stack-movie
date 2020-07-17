@@ -21,7 +21,11 @@ public class Movie {
     @SequenceGenerator(name = "movie_seq_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMovie;
-    
+
+    @Column(nullable = false, length = 10)
+    @NotNull
+    private String idImdb;
+
     @Column()
     @NotNull
     private String title;
@@ -29,7 +33,10 @@ public class Movie {
     @Column()
     private String date;
 
-    @Column()
+    @Column(length = 255)
+    private String posterUrl;
+
+    @Column(length = 1000)
     private String story;
 
     @Column()
@@ -40,22 +47,39 @@ public class Movie {
 
     @ManyToOne
     private User user;
-    
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private Set<Director> directors = new HashSet<Director>();
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private Set<Genre> genres = new HashSet<Genre>();
+    private List<Director> directors = new ArrayList<Director>();
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private Set<Actor> actors = new HashSet<Actor>();
+    private List<Genre> genres = new ArrayList<Genre>();
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Actor> actors = new ArrayList<Actor>();
 
     public Movie() {
     }
 
+    public Movie(String idImdb, String title) {
+        this.idImdb = idImdb;
+        this.title = title;
+    }
+
     @Override
     public String toString() {
-        return "Movie{" + "idMovie=" + idMovie + ", title=" + title + ", date=" + date + ", story=" + story + ", imdbRating=" + imdbRating + ", imdbVote=" + imdbVote + '}';
+        return "Movie{" + "idMovie=" + idMovie + ", idImdb=" + idImdb + ", title=" + title + ", date=" + date + ", imdbRating=" + imdbRating + ", imdbVote=" + imdbVote + '}';
+    }
+
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
+    }
+
+    public String getIdImdb() {
+        return idImdb;
     }
 
     public Long getIdMovie() {
@@ -86,16 +110,64 @@ public class Movie {
         return user;
     }
 
-    public Set<Director> getDirectors() {
+    public List<Director> getDirectors() {
         return directors;
     }
 
-    public Set<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public Set<Actor> getActors() {
+    public List<Actor> getActors() {
         return actors;
+    }
+
+    public void setIdMovie(Long idMovie) {
+        this.idMovie = idMovie;
+    }
+
+    public void setIdImdb(String idImdb) {
+        this.idImdb = idImdb;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
+    public void setImdbRating(String imdbRating) {
+        setImdbRating(Float.valueOf(imdbRating));
+    }
+
+    public void setImdbRating(Float imdbRating) {
+        this.imdbRating = imdbRating;
+    }
+
+    public void setImdbVote(Integer imdbVote) {
+        this.imdbVote = imdbVote;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setDirectors(List<Director> directors) {
+        this.directors = directors;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
     }
 
 }

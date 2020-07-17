@@ -17,7 +17,7 @@ import { Movie } from '../../model/movie';
 export class AddMovieComponent implements OnInit {
 
   addAMovieForm: FormGroup;
-  displayedColumns: any[] = ['add', 'title', 'released', 'idImdb', 'posterUrl'];
+  displayedColumns: any[] = ['add', 'title', 'genres', 'released', 'note', 'story'];
   dataSource = new MatTableDataSource<Movie>();
   hasData = false;
 

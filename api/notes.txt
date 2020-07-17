@@ -11,7 +11,18 @@ eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjYyODM5NmE1MTkzZWVjNTYxMTg4NTMxOThlMjEwMiIsInN
 --
 > Recherche de film
 https://api.themoviedb.org/3/search/movie?query={keyword}&language={lang}&api_key={key}
-
-ex recherche de film 'thor' :
-https://api.themoviedb.org/3/search/movie?query=thor&language=fr-FR&api_key=d2628396a5193eec56118853198e2102
-
+> Recherche un film par son Id
+https://api.themoviedb.org/3/movie/{Id}?api_key={key}&language={lang}"
+Ex:
+https://api.themoviedb.org/3/movie/tt2584384?api_key=d2628396a5193eec56118853198e2102&language=fr-FR
+> Recherche affiche par son Id
+https://api.themoviedb.org/3/movie/{Id}/images?api_key={key}
+Ex:
+https://api.themoviedb.org/3/movie/tt2584384/images?api_key=d2628396a5193eec56118853198e2102
+> Recherche acteurs par son Id
+https://api.themoviedb.org/3/movie/{Id}/credits?api_key={key}
+Ex;
+https://api.themoviedb.org/3/movie/tt2584384/credits?api_key=d2628396a5193eec56118853198e2102
+--
+OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=95ffd4d
+Here is your key: 95ffd4d

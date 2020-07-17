@@ -7,7 +7,7 @@
       <div>
         <div class="title">
           <label for="title"><h2>Titre du film</h2></label>
-          <input id="title" type="text" formControlName="movie_title" placeholder="Tapez le titre...">
+          <input id="title" type="text" formControlName="title" placeholder="Tapez le titre...">
         </div>
   
         <!--      ###################################################################################################      -->
@@ -44,21 +44,24 @@
           <mat-cell id="mat_cell_title" *matCellDef="let movie"> {{ dataSource.data.indexOf(movie)+1 }}.  {{ movie.title }} </mat-cell>
         </ng-container>
   
+        <ng-container matColumnDef="genres">
+          <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Genres </mat-header-cell>
+          <mat-cell *matCellDef="let movie"> {{ movie.genres }} </mat-cell>
+        </ng-container>
+  
         <ng-container matColumnDef="released">
           <mat-header-cell  class="mat_header" *matHeaderCellDef mat-sort-header> Année </mat-header-cell>
           <mat-cell *matCellDef="let movie"> {{ movie.released | date:'yyyy':'fr-FR' }} </mat-cell>
         </ng-container>
   
-        <ng-container matColumnDef="idImdb">
-          <mat-header-cell  class="mat_header" *matHeaderCellDef mat-sort-header> id IMDB </mat-header-cell>
-          <mat-cell *matCellDef="let movie"> {{ movie.idImdb }} </mat-cell>
+        <ng-container matColumnDef="note">
+          <mat-header-cell  class="mat_header" *matHeaderCellDef mat-sort-header> Note </mat-header-cell>
+          <mat-cell *matCellDef="let movie"> {{ movie.imdbRating }} </mat-cell>
         </ng-container>
   
-        <ng-container matColumnDef="posterUrl">
-          <mat-header-cell  class="mat_header" *matHeaderCellDef> Poster </mat-header-cell>
-          <mat-cell id="add_movie" *matCellDef="let movie">
-            <img class="poster" src="{{ movie.posterUrl }}" title="Affiche du film {{ movie.title }}">
-          </mat-cell>
+        <ng-container matColumnDef="story">
+          <mat-header-cell  class="mat_header" *matHeaderCellDef> Histoire </mat-header-cell>
+          <mat-cell *matCellDef="let movie"> {{ movie.story }} </mat-cell>
         </ng-container>
   
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

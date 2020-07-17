@@ -5,6 +5,7 @@
  */
 package fty.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -17,42 +18,43 @@ import javax.validation.constraints.NotNull;
 public class Actor {
 
     @Id
-    @SequenceGenerator(name = "actor_seq_id", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long idActor;
 
     @Column()
     @NotNull
-    private String firstName;
-
-    @Column()
-    @NotNull
-    private String lastName;
+    private String name;
     
+    @JsonIgnore
     @ManyToOne
     private Movie movie;
 
     public Actor() {
     }
 
+    public Actor(Long idActor, String name) {
+        this.idActor = idActor;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "Actor{" + "idActor=" + idActor + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+        return "Actor{" + "idActor=" + idActor + ", name=" + name + '}';
     }
 
     public Long getIdActor() {
         return idActor;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public void setIdActor(Long idActor) {
+        this.idActor = idActor;
     }
 
     public Movie getMovie() {
         return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 }

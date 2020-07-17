@@ -5,6 +5,8 @@
  */
 package fty.api.service;
 
+import fty.api.model.Actor;
+import fty.api.model.Director;
 import fty.api.model.Movie;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,12 @@ public interface MovieService {
     Movie getMovieById(String movieId);
     
     List<Movie> getMovies();
+    
+    Movie getMovieFromTMDBByImdbID(String imdbId, boolean save);
+    Movie getMovieFromTMDBByImdbID(Integer tmdbId, boolean save);
+    
+    public List<Actor> getActorsFromTMDBByImdbID (String imdbId);
+    public List<Director> getDirectorFromTMDBByImdbID (String imdbId);
     
     List<Movie> searchMoviesFromTMDBByKeyword(String keyword);
 }
