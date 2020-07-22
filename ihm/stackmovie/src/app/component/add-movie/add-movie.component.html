@@ -44,7 +44,7 @@
 
       <ng-container matColumnDef="title">
         <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
-        <mat-cell id="mat_cell_title" *matCellDef="let movie"> {{ dataSource.data.indexOf(movie)+1 }}. {{ movie.title }}
+        <mat-cell id="mat_cell_title" *matCellDef="let movie"> <a [routerLink]="['/movies/imdb', movie.idImdb]">{{ movie.title }}</a>
         </mat-cell>
       </ng-container>
 
@@ -76,5 +76,6 @@
 
   </div>
 
-  <mat-paginator *ngIf="hasData" [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+  <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
 </section>

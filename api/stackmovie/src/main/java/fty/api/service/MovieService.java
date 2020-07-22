@@ -23,6 +23,7 @@ public interface MovieService {
     Movie updateMovie(Movie updateMovie);
     
     Movie getMovieById(String movieId);
+    Movie getMovieByImdbId(String imbdId);
     
     List<Movie> getMovies();
     

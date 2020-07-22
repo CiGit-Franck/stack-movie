@@ -99,6 +99,13 @@ public class MovieServiceImpl extends JSonService implements MovieService {
     }
 
     @Override
+    public Movie getMovieByImdbId(String imdbId) {
+        Movie movie = getMovieSearchByImdbID(imdbId);
+System.out.println("[Service:getMovieByImdbId] with "+imdbId);
+        return movie;
+    }
+
+    @Override
     public List<Movie> getMovies() {
         return movieRepository.findAll();
     }
@@ -122,7 +129,8 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 
                         Movie movieItem = getMovieSearchByImdbID(((Integer) jsonMovieItem.get(TMDB_FIELD_ID).asInt()).toString());
 
-                        if (movieItem != null && movieItem.getTitle() != null) {
+                        if (movieItem != null && movieItem.getTitle() != null 
+                                && movieItem.getImdbRating() > 0.0) {
                             moviesSearch.add(movieItem);
                         }
                     }
@@ -143,7 +151,7 @@ public class MovieServiceImpl extends JSonService implements MovieService {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonMovie = mapper.readTree(movieImdb);
-                
+
                 if (checkIdAndTitle(jsonMovie)) {
                     movie = new Movie(jsonMovie.get(TMDB_FIELD_IDIMDB).asText(), jsonMovie.get(TMDB_FIELD_TITLE).asText());
                     movie.setDate(jsonMovie.get(TMDB_FIELD_RELEASE).asText());
@@ -211,7 +219,6 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //        }
 //        return null;
 //    }
-
 //    private String searchPosterWithRatio(JsonNode jsonNode) {
 //        String urlImage = "http://image.tmdb.org/t/p/original";
 //        for (Object poster : jsonNode.get(TMDB_FIELD_POSTER)) {
@@ -230,7 +237,6 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //        }
 //        return null;
 //    }
-
     private Movie getMovieFormTMDB(String imdbId, boolean save) {
 //        this.args.put("Id", imdbId);
 //
@@ -284,7 +290,6 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //            }
 //        }
 //    }
-
 //    @Override
 //    public List<Actor> getActorsFromTMDBByImdbID(String imdbId) {
 //        this.args.put("Id", imdbId);
@@ -313,7 +318,6 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //
 //        return actors;
 //    }
-
 //    @Override
 //    public List<Director> getDirectorFromTMDBByImdbID(String imdbId) {
 //        this.args.put("Id", imdbId);

@@ -27,6 +27,7 @@ import { AddMovieComponent } from './component/add-movie/add-movie.component';
 
 import { UserService } from './service/user.service';
 import { MovieService } from './service/movie.service';
+import { MovieSheetComponent } from './component/movie-sheet/movie-sheet.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MovieService } from './service/movie.service';
     FootBarComponent,
     LoginPageComponent,
     AddUserComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    MovieSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { MovieService } from './service/movie.service';
       { path: 'login', component: LoginPageComponent },
       { path: 'adduser', component: AddUserComponent },
       { path: 'addamovie', component: AddMovieComponent },
+      { path: 'movie', component: MovieSheetComponent },
     ]),
     FlexLayoutModule,
     MatButtonModule,

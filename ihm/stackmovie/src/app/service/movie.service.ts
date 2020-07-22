@@ -15,6 +15,11 @@ export class MovieService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getMovie(imdbId: string): Observable<any> {
+    const urlApi = this.pathRootApi + '/imdb/' + imdbId;
+    return this.httpClient.get<Movie>(urlApi);
+  }
+
   getMoviesByKeyword(keyword: string): Observable<Movie[]> {
     const urlApi = this.pathRootApi + '/search/' + keyword;
     return this.httpClient.get<Movie[]>(urlApi);

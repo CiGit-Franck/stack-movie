@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import org.springframework.web.bind.annotation.*;
 
+
 /**
  *
  * @author utilisateur
@@ -38,7 +39,14 @@ public class MovieControler {
 
     @GetMapping("/{movieId}")
     public Movie getMovieById(@PathVariable String movieId) {
+System.out.println("[controler:getMovieById] with "+movieId);
         return movieService.getMovieById(movieId);
+    }
+    
+    @GetMapping("/imdb/{imdbId}")
+    public Movie getMovieByImdbId(@PathVariable String imdbId){
+System.out.println("[controler:getMovieByImdbId] with "+imdbId);
+        return movieService.getMovieByImdbId(imdbId);
     }
 
     @GetMapping()
