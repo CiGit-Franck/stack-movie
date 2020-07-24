@@ -44,14 +44,15 @@
 
       <ng-container matColumnDef="title">
         <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
-        <mat-cell id="mat_cell_title" *matCellDef="let movie"> <a [routerLink]="['/movies/imdb', movie.idImdb]">{{ movie.title }}</a>
+        <mat-cell id="mat_cell_title" *matCellDef="let movie"> <a [routerLink]=""
+            (click)="showMovie(movie.imdbId)">{{ movie.title }}</a>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="genres">
         <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Genres </mat-header-cell>
         <mat-cell *matCellDef="let movie">
-          <span *ngFor="let genre of movie.genres"> {{ genre.name }},  </span>
+          <span *ngFor="let genre of movie.genres"> {{ genre.name }}, </span>
         </mat-cell>
       </ng-container>
 

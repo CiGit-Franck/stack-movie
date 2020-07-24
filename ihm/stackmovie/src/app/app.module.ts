@@ -49,7 +49,7 @@ import { MovieSheetComponent } from './component/movie-sheet/movie-sheet.compone
       { path: 'login', component: LoginPageComponent },
       { path: 'adduser', component: AddUserComponent },
       { path: 'addamovie', component: AddMovieComponent },
-      { path: 'movie', component: MovieSheetComponent },
+      { path: 'movies/imdb/:imdbId', component: MovieSheetComponent },
     ]),
     FlexLayoutModule,
     MatButtonModule,

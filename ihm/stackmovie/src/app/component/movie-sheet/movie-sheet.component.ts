@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Movie } from 'src/app/model/movie';
+import { MovieService } from '../../service/movie.service';
 
 @Component({
   selector: 'app-movie-sheet',
@@ -8,11 +11,12 @@ import { Movie } from 'src/app/model/movie';
 })
 export class MovieSheetComponent implements OnInit {
 
-  currentMovie: Movie;
+  movie: Movie;
 
-  constructor() { }
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit(): void {
+    // this.movieService.getMovie()
   }
 
 }
