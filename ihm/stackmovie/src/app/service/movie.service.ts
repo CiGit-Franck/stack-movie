@@ -12,12 +12,13 @@ export class MovieService {
   private pathRootApi = 'http://localhost:8090/movies';
 
   public listMovie: Observable<Movie[]>;
-  public currentMovie: Movie = new Movie();
+  public listSearch: Movie[];
+  public currentMovie: Movie;
 
   constructor(private httpClient: HttpClient) { }
 
-  getMovie(imdbId: string): Observable<Movie> {
-    const urlApi = this.pathRootApi + '/imdb/' + imdbId;
+  getMovie(idImdb: string): Observable<Movie> {
+    const urlApi = this.pathRootApi + '/imdb/' + idImdb;
     return this.httpClient.get<Movie>(urlApi);
   }
 

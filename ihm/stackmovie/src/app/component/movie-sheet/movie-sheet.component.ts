@@ -11,12 +11,12 @@ import { MovieService } from '../../service/movie.service';
 })
 export class MovieSheetComponent implements OnInit {
 
-  movie: Movie;
+  public movie: Movie;
 
-  constructor(private movieService: MovieService, private router: Router) { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
-    // this.movieService.getMovie()
+    this.movie = this.movieService.currentMovie;
   }
 
 }

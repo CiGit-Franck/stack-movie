@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 import { MovieService } from '../../service/movie.service';
 import { Movie } from '../../model/movie';
@@ -19,7 +20,7 @@ export class AddMovieComponent implements OnInit {
   dataSource = new MatTableDataSource<Movie>();
   hasData = false;
 
-  constructor(private formBuilder: FormBuilder, private movieService: MovieService) {
+  constructor(private formBuilder: FormBuilder, private movieService: MovieService, private router: Router) {
     this.addAMovieForm = this.formBuilder.group({
       title: ['', Validators.required]
       // released: new FormControl(''),
@@ -30,6 +31,10 @@ export class AddMovieComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit(): void {
+    if(this.movieService.listSearch !== null){
+      console.log('not null');
+      this.dataSource.data = this.movieService.listSearch;
+    }
   }
 
   onSubmit() {
@@ -46,14 +51,17 @@ export class AddMovieComponent implements OnInit {
     }
   }
 
-  showMovie(imdbId: string) {
-    console.log("--> showMovie > " + imdbId);
-    this.movieService.getMovie(imdbId).subscribe(movie => {
+  showMovie(idImdb: string) {
+    this.movieService.getMovie(idImdb).subscribe(movie => {
       this.movieService.currentMovie = movie;
+      setTimeout(() => {
+        this.router.navigate(['movies/imdb', idImdb]);
+      }, 1000);
     })
   }
 
   addAmovie(movie: Movie) {
+    this.movieService.listSearch = null;
   }
 }
 

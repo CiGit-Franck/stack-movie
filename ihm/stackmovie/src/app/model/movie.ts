@@ -4,7 +4,7 @@ import { Director } from './director';
 
 export class Movie {
     idMovie: number;
-    imdbId: string;
+    idImdb: string;
     title: String;
     date: String;
     story: String;

@@ -45,7 +45,7 @@ System.out.println("[controler:getMovieById] with "+movieId);
     
     @GetMapping("/imdb/{imdbId}")
     public Movie getMovieByImdbId(@PathVariable String imdbId){
-System.out.println("[controler:getMovieByImdbId] with "+imdbId);
+//System.out.println("[controler:getMovieByImdbId] with "+imdbId);
         return movieService.getMovieByImdbId(imdbId);
     }
 

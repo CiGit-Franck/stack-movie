@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author utilisateur
+ * @author Franck
  */
 @Entity
 @Table(name = "movie")
