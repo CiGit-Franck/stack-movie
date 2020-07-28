@@ -1,0 +1,11 @@
+
+#poster {
+  max-width: 29vw;
+  margin: 5px;
+}
+  
+.poster {
+  width: 33%;
+  height: auto;
+  vertical-align: middle;
+}

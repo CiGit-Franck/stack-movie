@@ -1,23 +1,36 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-        <mat-card-header>
-            <mat-card-title>{{movie.title}}</mat-card-title>
-            <mat-card-subtitle>{{movie.date}}</mat-card-subtitle>
-        </mat-card-header>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <section>
 
-        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-
-        <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
             <div>
+                <img class="poster" [src]="movie.posterUrl" alt="Affiche du film">
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <h1>{{movie.title}}</h1>
+                <h3>{{movie.date}}</h3>
                 <p>{{movie.story}}</p>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <h4>Réalisateur(s)</h4>
+                    <ul *ngFor="let director of movie.directors">
+                        <h6>director</h6>
+                    </ul>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <h4>Acteur(s) : </h4>
+                    <ul *ngFor="let actor of movie.actors">
+                        <h6>actor</h6>
+                    </ul>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <h4>Genre(s)</h4>
+                    <ul *ngFor="let genre of movie.genres">
+                        <h6>genre</h6>
+                    </ul>
+                </div>
             </div>
-            <div>
-
-            </div>
-        </mat-card-content>
-
-        <mat-card-actions>
-            <button mat-button [routerLink]="['/addamovie']"> Ok </button>
-        </mat-card-actions>
-    </mat-card>
+        </div>
+    </section>
+</div>
+<div>
+    <button mat-button [routerLink]="['/addamovie']"> Ok </button>
 </div>

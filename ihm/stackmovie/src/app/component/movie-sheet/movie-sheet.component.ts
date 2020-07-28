@@ -18,5 +18,4 @@ export class MovieSheetComponent implements OnInit {
   ngOnInit(): void {
     this.movie = this.movieService.currentMovie;
   }
-
 }
