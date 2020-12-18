@@ -23,11 +23,7 @@ public class Director {
 
     @Column()
     @NotNull
-    private String firstName;
-
-    @Column()
-    @NotNull
-    private String lastName;
+    private String name;
     
     @ManyToOne
     private Movie movie;
@@ -35,23 +31,23 @@ public class Director {
     public Director() {
     }
 
-    @Override
-    public String toString() {
-        return "Director{" + "idDirector=" + idDirector + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+    public Director(Long idDirector, String name) {
+        this.idDirector = idDirector;
+        this.name = name;
     }
 
     public Long getIdDirector() {
         return idDirector;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setName(String name) {
+        this.name = name;
     }
-
+    
     public Movie getMovie() {
         return movie;
     }

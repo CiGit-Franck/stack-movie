@@ -6,8 +6,3 @@ div {
     width: auto;
     background-color: rgb(159, 163, 255);
   }
-
-  mat-icon {
-    cursor: pointer;
-    /* text-decoration: none; */
-  }

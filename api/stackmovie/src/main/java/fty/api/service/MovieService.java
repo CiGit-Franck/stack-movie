@@ -23,14 +23,15 @@ public interface MovieService {
     Movie updateMovie(Movie updateMovie);
     
     Movie getMovieById(String movieId);
+    Movie getMovieByImdbId(String imbdId);
     
     List<Movie> getMovies();
     
 //    Movie getMovieFromTMDBByImdbID(String imdbId, boolean save);
 //    Movie getMovieFromTMDBByImdbID(Integer tmdbId, boolean save);
     
-    public List<Actor> getActorsFromTMDBByImdbID (String imdbId);
-    public List<Director> getDirectorFromTMDBByImdbID (String imdbId);
+//    public List<Actor> getActorsFromTMDBByImdbID (String imdbId);
+//    public List<Director> getDirectorFromTMDBByImdbID (String imdbId);
     
     List<Movie> searchMoviesFromTMDBByKeyword(String keyword);
 }

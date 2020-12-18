@@ -49,6 +49,9 @@ public class MovieServiceImpl extends JSonService implements MovieService {
     private static final String TMDB_FIELD_RATIO = "aspect_ratio";
     private static final String TMDB_FIELD_PATH = "file_path";
     private static final String TMDB_FIELD_CAST = "cast";
+    private static final String TMDB_FIELD_CREW = "crew";
+    private static final String TMDB_FIELD_DIRECTOR = "Director";
+    private static final String TMDB_FIELD_JOB = "job";
     private static final String TMDB_FIELD_NAME = "name";
     private static final String TMDB_FIELD_RATE = "vote_average";
     private static final String TMDB_FIELD_GENRES = "genres";
@@ -99,6 +102,15 @@ public class MovieServiceImpl extends JSonService implements MovieService {
     }
 
     @Override
+    public Movie getMovieByImdbId(String imdbId) {
+//System.out.println("[Service:getMovieByImdbId] with "+imdbId);
+        Movie movie = getMovieSearchByImdbID(imdbId);
+        setActorsAndDirectorsFromTMDBByImdbID(movie);
+        setPosterFromTMDBByImdbID(movie);
+        return movie;
+    }
+
+    @Override
     public List<Movie> getMovies() {
         return movieRepository.findAll();
     }
@@ -122,7 +134,8 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 
                         Movie movieItem = getMovieSearchByImdbID(((Integer) jsonMovieItem.get(TMDB_FIELD_ID).asInt()).toString());
 
-                        if (movieItem.getTitle() != null) {
+                        if (movieItem != null && movieItem.getTitle() != null
+                                && movieItem.getImdbRating() > 0.0) {
                             moviesSearch.add(movieItem);
                         }
                     }
@@ -136,14 +149,14 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 
     private Movie getMovieSearchByImdbID(String imdbId) {
         this.args.put("Id", imdbId);
-        String movieImdb = this.restTemplate.getForObject(URL_TMDB_POSTER_ID, String.class, this.args);
+        String movieImdb = this.restTemplate.getForObject(URL_TMDB_MOVIE_ID, String.class, this.args);
         Movie movie = null;
 
         if (movieImdb != null) {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonMovie = mapper.readTree(movieImdb);
-                
+
                 if (checkIdAndTitle(jsonMovie)) {
                     movie = new Movie(jsonMovie.get(TMDB_FIELD_IDIMDB).asText(), jsonMovie.get(TMDB_FIELD_TITLE).asText());
                     movie.setDate(jsonMovie.get(TMDB_FIELD_RELEASE).asText());
@@ -162,12 +175,19 @@ public class MovieServiceImpl extends JSonService implements MovieService {
         List<Genre> genres = new ArrayList<>();
 
         if (checkNode(jsonNode, TMDB_FIELD_GENRES)) {
+<<<<<<< HEAD
+=======
+            int i = 0;
+>>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
             for (Object genreObj : jsonNode.get(TMDB_FIELD_GENRES)) {
                 try {
                     ObjectMapper mapperGenre = new ObjectMapper();
                     JsonNode jsonGenre = mapperGenre.readTree(genreObj.toString());
-                    Genre genre = new Genre(jsonGenre.get(TMDB_FIELD_NAME).asText());
-                    genres.add(genre);
+                    if (i < 3) {
+                        Genre genre = new Genre(jsonGenre.get(TMDB_FIELD_NAME).asText());
+                        genres.add(genre);
+                        i++;
+                    }
                 } catch (JsonProcessingException ex) {
                     Logger.getLogger(MovieServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -191,6 +211,7 @@ public class MovieServiceImpl extends JSonService implements MovieService {
         return (checkNode(jsonNode, TMDB_FIELD_IDIMDB) && checkNode(jsonNode, TMDB_FIELD_TITLE));
     }
 
+<<<<<<< HEAD
 //    private String getPosterFromTMDBByImdbID(String imdbId) {
 //        this.args.put("Id", imdbId);
 //        String movieImdb = this.restTemplate.getForObject(URL_TMDB_POSTER_ID, String.class, this.args);
@@ -230,6 +251,46 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //    }
 
 //    private Movie getMovieFormTMDB(String imdbId, boolean save) {
+=======
+    private void setPosterFromTMDBByImdbID(Movie movie) {
+        String movieImdb = this.restTemplate.getForObject(URL_TMDB_POSTER_ID, String.class, this.args);
+
+        if (movieImdb != null) {
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode jsonMovie = mapper.readTree(movieImdb);
+
+                if (jsonMovie.has(TMDB_FIELD_POSTER)) {
+                    String urlPoster = searchPosterWithRatio(jsonMovie);
+                    movie.setPosterUrl(urlPoster);
+                }
+            } catch (JsonProcessingException ex) {
+                Logger.getLogger(MovieServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private String searchPosterWithRatio(JsonNode jsonNode) {
+        String urlImage = "http://image.tmdb.org/t/p/original";
+        for (Object poster : jsonNode.get(TMDB_FIELD_POSTER)) {
+            try {
+                ObjectMapper mapperPoster = new ObjectMapper();
+                JsonNode jsonPoster = mapperPoster.readTree(poster.toString());
+                if (jsonPoster.has(TMDB_FIELD_RATIO)
+                        && jsonPoster.has(TMDB_FIELD_PATH)
+                        && jsonPoster.get(TMDB_FIELD_RATIO).asDouble() == 0.6666666666666666) {
+
+                    return urlImage + jsonPoster.get(TMDB_FIELD_PATH).asText();
+                }
+            } catch (JsonProcessingException ex) {
+                Logger.getLogger(MovieServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+
+    private Movie getMovieFormTMDB(String imdbId, boolean save) {
+>>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
 //        this.args.put("Id", imdbId);
 //
 //        String movieImdb = this.restTemplate.getForObject(URL_TMDB_MOVIE_ID, String.class, this.args);
@@ -255,8 +316,13 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //                Logger.getLogger(MovieServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //        }
+<<<<<<< HEAD
 //        return null;
 //    }
+=======
+        return null;
+    }
+>>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
 
 //    private void setImdbRatingAndVote(String imdbId, Movie newMovie) {
 //        argsOmdb.put("Id", imdbId);
@@ -282,12 +348,17 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //            }
 //        }
 //    }
+<<<<<<< HEAD
 
     @Override
     public List<Actor> getActorsFromTMDBByImdbID(String imdbId) {
         this.args.put("Id", imdbId);
 
         List<Actor> actors = new ArrayList<>();
+=======
+    private void setActorsAndDirectorsFromTMDBByImdbID(Movie movie) {
+        this.args.put("Id", movie.getIdImdb());
+>>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
 
         String movieImdb = this.restTemplate.getForObject(URL_TMDB_ACTORS_ID, String.class, this.args);
 
@@ -295,29 +366,46 @@ public class MovieServiceImpl extends JSonService implements MovieService {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonMovie = mapper.readTree(movieImdb);
+
                 if (checkNode(jsonMovie, TMDB_FIELD_CAST)) {
+
+                    List<Actor> actors = new ArrayList<>();
+                    int i = 0;
                     for (Object cast : jsonMovie.get(TMDB_FIELD_CAST)) {
                         ObjectMapper mapperCast = new ObjectMapper();
                         JsonNode jsonActor = mapperCast.readTree(cast.toString());
-                        Actor actor = new Actor(jsonActor.get(TMDB_FIELD_ID).asLong(), jsonActor.get(TMDB_FIELD_NAME).asText());
-                        actorRepository.save(actor);
-                        actors.add(actor);
+                        if (i < 3) {
+                            Actor actor = new Actor(jsonActor.get(TMDB_FIELD_ID).asLong(), jsonActor.get(TMDB_FIELD_NAME).asText());
+                            actorRepository.save(actor);
+                            actors.add(actor);
+                            i++;
+                        }
                     }
+                    movie.setActors(actors);
+                }
+
+                if (checkNode(jsonMovie, TMDB_FIELD_CREW)) {
+
+                    List<Director> directors = new ArrayList<>();
+                    int i = 0;
+                    for (Object crew : jsonMovie.get(TMDB_FIELD_CREW)) {
+                        ObjectMapper mapperCrew = new ObjectMapper();
+                        JsonNode jsonCrew = mapperCrew.readTree(crew.toString());
+                        if (jsonCrew.has(TMDB_FIELD_JOB)
+                                && jsonCrew.get(TMDB_FIELD_JOB).asText().equals("Director")) {
+                            if (i < 3) {
+                                Director director = new Director(jsonCrew.get(TMDB_FIELD_ID).asLong(), jsonCrew.get(TMDB_FIELD_NAME).asText());
+                                directorRepository.save(director);
+                                directors.add(director);
+                                i++;
+                            }
+                        }
+                    }
+                    movie.setDirectors(directors);
                 }
             } catch (JsonProcessingException ex) {
                 Logger.getLogger(MovieServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-        return actors;
-    }
-
-    @Override
-    public List<Director> getDirectorFromTMDBByImdbID(String imdbId) {
-        this.args.put("Id", imdbId);
-
-        List<Director> directors = new ArrayList<>();
-
-        return directors;
     }
 }

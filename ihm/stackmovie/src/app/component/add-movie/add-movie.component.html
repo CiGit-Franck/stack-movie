@@ -1,75 +1,82 @@
-  <section class="addMovieForm">
+<section class="addMovieForm">
+  <div>
+    <h1>Indiquez vos critères de recherche</h1>
+  </div>
+
+  <form [formGroup]="addAMovieForm" (ngSubmit)="onSubmit()">
     <div>
-      <h1>Indiquez vos critères de recherche</h1>
-    </div>
-  
-    <form [formGroup]="addAMovieForm" (ngSubmit)="onSubmit()">
-      <div>
-        <div class="title">
-          <label for="title"><h2>Titre du film</h2></label>
-          <input id="title" type="text" formControlName="title" placeholder="Tapez le titre...">
-        </div>
-  
-        <!--      ###################################################################################################      -->
-        <!--      ### FUTURE FEATURE### - Possibilité d'ajouter l'année de sortie du film comme critère de recherche       -->
-        <!--      ###################################################################################################      -->
-        <!--      <div class="released">-->
-        <!--        <label for="released"><h2>Année de sortie du film</h2></label>-->
-        <!--        <input id="released" type="text" formControlName="movie_released" placeholder="Tapez l'année...">-->
-        <!--      </div>-->
-        <!--      ###################################################################################################      -->
-        <!--      ###################################################################################################      -->
-  
+      <div class="title">
+        <label for="title">
+          <h2>Titre du film</h2>
+        </label>
+        <input id="title" type="text" formControlName="title" placeholder="Tapez le titre...">
       </div>
-  
-      <div>
-        <a><button class="button" type="submit">Chercher</button></a>
-      </div>
-  
-    </form>
-  </section>
-  
-  <section>
-    <div id="scrollable_table">
-      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z5">
-        <ng-container matColumnDef="add">
-          <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header></mat-header-cell>
-          <mat-cell *matCellDef="let movie">
-            <mat-icon id="add_movie_icon" aria-hidden="false" aria-label="Ajouter un film" title="Ajouter un film" (click)="addAmovie(movie)">add</mat-icon>
-          </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="title">
-          <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
-          <mat-cell id="mat_cell_title" *matCellDef="let movie"> {{ dataSource.data.indexOf(movie)+1 }}.  {{ movie.title }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="genres">
-          <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Genres </mat-header-cell>
-          <mat-cell *matCellDef="let movie"> {{ movie.genres }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="released">
-          <mat-header-cell  class="mat_header" *matHeaderCellDef mat-sort-header> Année </mat-header-cell>
-          <mat-cell *matCellDef="let movie"> {{ movie.released | date:'yyyy':'fr-FR' }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="note">
-          <mat-header-cell  class="mat_header" *matHeaderCellDef mat-sort-header> Note </mat-header-cell>
-          <mat-cell *matCellDef="let movie"> {{ movie.imdbRating }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="story">
-          <mat-header-cell  class="mat_header" *matHeaderCellDef> Histoire </mat-header-cell>
-          <mat-cell *matCellDef="let movie"> {{ movie.story }} </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-  
+
+      <!--      ###################################################################################################      -->
+      <!--      ### FUTURE FEATURE### - Possibilité d'ajouter l'année de sortie du film comme critère de recherche       -->
+      <!--      ###################################################################################################      -->
+      <!--      <div class="released">-->
+      <!--        <label for="released"><h2>Année de sortie du film</h2></label>-->
+      <!--        <input id="released" type="text" formControlName="movie_released" placeholder="Tapez l'année...">-->
+      <!--      </div>-->
+      <!--      ###################################################################################################      -->
+      <!--      ###################################################################################################      -->
+
     </div>
-  
-    <mat-paginator *ngIf="hasData" [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-  </section>
-  
+
+    <div>
+      <a><button class="button" type="submit">Chercher</button></a>
+    </div>
+
+  </form>
+</section>
+
+<section>
+  <div id="scrollable_table">
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z5">
+      <ng-container matColumnDef="add">
+        <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let movie">
+          <mat-icon id="add_movie_icon" aria-hidden="false" aria-label="Ajouter un film" title="Ajouter un film"
+            (click)="addAmovie(movie)">add</mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Titre </mat-header-cell>
+        <mat-cell id="mat_cell_title" *matCellDef="let movie"> <a [routerLink]=""
+            (click)="showMovie(movie.idImdb)">{{ movie.title }}</a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="genres">
+        <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Genres </mat-header-cell>
+        <mat-cell *matCellDef="let movie">
+          <span *ngFor="let genre of movie.genres"> {{ genre.name }}, </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="released">
+        <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Année </mat-header-cell>
+        <mat-cell *matCellDef="let movie"> {{ movie.date | date:'yyyy':'fr-FR' }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="note">
+        <mat-header-cell class="mat_header" *matHeaderCellDef mat-sort-header> Note </mat-header-cell>
+        <mat-cell *matCellDef="let movie"> {{ movie.imdbRating }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="story">
+        <mat-header-cell class="mat_header" *matHeaderCellDef> Histoire </mat-header-cell>
+        <mat-cell *matCellDef="let movie"> {{ movie.story }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </div>
+
+  <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
+</section>
