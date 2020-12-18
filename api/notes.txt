@@ -10,7 +10,9 @@ Jeton d'accès en lecture à l'API (v4 auth)
 eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjYyODM5NmE1MTkzZWVjNTYxMTg4NTMxOThlMjEwMiIsInN1YiI6IjVlNWJkNmE4MzU3YzAwMDAxMTI5YTRmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5PDAe6D1sbUMCTcdegZaBRgqDkeDZ3mbUB56qylDrkc
 --
 > Recherche de film
-https://api.themoviedb.org/3/search/movie?query={keyword}&language={lang}&api_key={key}
+https://api.themoviedb.org/3/search/movie?query={keyword}&language=fr-FR&api_key={key}
+Ex:
+https://api.themoviedb.org/3/search/movie?query=Jojo&language=fr-FR&api_key=d2628396a5193eec56118853198e2102
 > Recherche un film par son Id
 https://api.themoviedb.org/3/movie/{Id}?api_key={key}&language={lang}"
 Ex:

@@ -26,8 +26,8 @@ public interface MovieService {
     
     List<Movie> getMovies();
     
-    Movie getMovieFromTMDBByImdbID(String imdbId, boolean save);
-    Movie getMovieFromTMDBByImdbID(Integer tmdbId, boolean save);
+//    Movie getMovieFromTMDBByImdbID(String imdbId, boolean save);
+//    Movie getMovieFromTMDBByImdbID(Integer tmdbId, boolean save);
     
     public List<Actor> getActorsFromTMDBByImdbID (String imdbId);
     public List<Director> getDirectorFromTMDBByImdbID (String imdbId);
