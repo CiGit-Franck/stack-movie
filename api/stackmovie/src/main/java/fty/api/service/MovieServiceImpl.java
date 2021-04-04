@@ -175,10 +175,7 @@ public class MovieServiceImpl extends JSonService implements MovieService {
         List<Genre> genres = new ArrayList<>();
 
         if (checkNode(jsonNode, TMDB_FIELD_GENRES)) {
-<<<<<<< HEAD
-=======
             int i = 0;
->>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
             for (Object genreObj : jsonNode.get(TMDB_FIELD_GENRES)) {
                 try {
                     ObjectMapper mapperGenre = new ObjectMapper();
@@ -211,7 +208,6 @@ public class MovieServiceImpl extends JSonService implements MovieService {
         return (checkNode(jsonNode, TMDB_FIELD_IDIMDB) && checkNode(jsonNode, TMDB_FIELD_TITLE));
     }
 
-<<<<<<< HEAD
 //    private String getPosterFromTMDBByImdbID(String imdbId) {
 //        this.args.put("Id", imdbId);
 //        String movieImdb = this.restTemplate.getForObject(URL_TMDB_POSTER_ID, String.class, this.args);
@@ -251,7 +247,7 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //    }
 
 //    private Movie getMovieFormTMDB(String imdbId, boolean save) {
-=======
+
     private void setPosterFromTMDBByImdbID(Movie movie) {
         String movieImdb = this.restTemplate.getForObject(URL_TMDB_POSTER_ID, String.class, this.args);
 
@@ -290,7 +286,6 @@ public class MovieServiceImpl extends JSonService implements MovieService {
     }
 
     private Movie getMovieFormTMDB(String imdbId, boolean save) {
->>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
 //        this.args.put("Id", imdbId);
 //
 //        String movieImdb = this.restTemplate.getForObject(URL_TMDB_MOVIE_ID, String.class, this.args);
@@ -316,13 +311,10 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //                Logger.getLogger(MovieServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //        }
-<<<<<<< HEAD
 //        return null;
 //    }
-=======
         return null;
     }
->>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
 
 //    private void setImdbRatingAndVote(String imdbId, Movie newMovie) {
 //        argsOmdb.put("Id", imdbId);
@@ -348,17 +340,16 @@ public class MovieServiceImpl extends JSonService implements MovieService {
 //            }
 //        }
 //    }
-<<<<<<< HEAD
 
-    @Override
     public List<Actor> getActorsFromTMDBByImdbID(String imdbId) {
         this.args.put("Id", imdbId);
 
         List<Actor> actors = new ArrayList<>();
-=======
+        return actors;
+    }
+    
     private void setActorsAndDirectorsFromTMDBByImdbID(Movie movie) {
         this.args.put("Id", movie.getIdImdb());
->>>>>>> c60f40a9cb0eddf2d8aa42cbab6ed22b307fe89f
 
         String movieImdb = this.restTemplate.getForObject(URL_TMDB_ACTORS_ID, String.class, this.args);
 
